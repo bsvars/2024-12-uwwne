@@ -80,6 +80,6 @@ post |>
 
 # compute and plot forecasts
 post |> 
-  forecast(horizon = 8, data_in_plot = 0.3) |> 
-  plot()
+  forecast(horizon = 8) |> 
+  plot(data_in_plot = 0.3)
 

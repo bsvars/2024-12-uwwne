@@ -1015,13 +1015,13 @@ plot(
 lines(
   x = grid_var, 
   y = p_sv(grid_var, T), 
-  col = dar,
+  col = "#ffd700",
   lwd = 2
 )
 legend(
   "topright",
   legend = c("niescentrowana", "scentrowana"),
-  col = c(pin, dar),
+  col = c(pin, "#ffd700"),
   lwd = 2,
   bty = "n"
 )
