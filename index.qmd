@@ -33,41 +33,20 @@ grad = grDevices::colorRampPalette(c(dar, pin))(5)
 ![](bsvarSIGNs.png){.absolute top=80 right=-75 width="400"}
 
 
-## <span style='color: #ff68b4;'>Część pierwsza</span> {background-color="#ededed"}
+## Analizy strukturalne z paczkami bsvars i bsvarSIGNs dla R {style="color:#ff68b4;"}
 
 $$ $$
 
-### Wielowymiarowe bayesowskie dynamiczne modele strukturalne z paczek bsvars i bsvarSIGNs dla R  {style="color:#ff68b4;"}
+### cechy paczek bsvars i bsvarSIGNs {style="color:#ff68b4;"}
 
-$$ $$
+### strukturalne modele VAR {style="color:#ff68b4;"}
 
-#### cechy paczek bsvars i bsvarSIGNs {style="color:#ff68b4;"}
+### identyfikacja modeli strukturalnych{style="color:#ff68b4;"}
 
-#### strukturalne modele VAR {style="color:#ff68b4;"}
+### modelowanie rozkładu i zmienności {style="color:#ff68b4;"}
 
-#### identyfikacja modeli strukturalnych{style="color:#ff68b4;"}
+### skrypty dla analiz strukturalnych {style="color:#ff68b4;"}
 
-#### modelowanie rozkładu i zmienności {style="color:#ff68b4;"}
-
-
-
-
-
-
-
-## <span style='color: #ff68b4;'>Część druga</span> {background-color="#ededed"}
-
-$$ $$
-
-### Analiza efektów australijskiej polityki monetarnej używając paczki bsvars  {style="color:#ff68b4;"}
-
-$$ $$
-
-#### Analiza efektów australijskiej polityki monetarnej {style="color:#ff68b4;"}
-
-#### ustawienie i estymacja modelu {style="color:#ff68b4;"}
-
-#### analizy strukturalne i predyktywne {style="color:#ff68b4;"}
 
 
 
@@ -77,9 +56,12 @@ $$ $$
 
 $$ $$
 
-### slajdy jako [strona internetowa](https://bsvars.org/2024-12-uek/) {style="color:#ff68b4;"}
+### slajdy jako [strona internetowa](https://bsvars.org/2024-12-uwwne/) {style="color:#ff68b4;"}
 
-### [repozytorium](https://github.com/bsvars/2024-12-uek) na GitHub dla reprodukcji wyników{style="color:#ff68b4;"}
+### [repozytorium](https://github.com/bsvars/2024-12-uwwne) na GitHub dla reprodukcji wyników{style="color:#ff68b4;"}
+
+### [skrypty](https://github.com/bsvars/2024-12-uek/blob/master/bsvars_oz.R) dla reprodukcji wyników {style="color:#ff68b4;"}
+
 
 $$ $$
 
@@ -434,8 +416,8 @@ post |> forecast(horizon = 12) |> plot()
 ### model.
 \begin{align}
 \text{równanie VAR: }&& y_t &= \mathbf{A}_1 y_{t-1} + \dots + \mathbf{A}_p y_{t-p} + \mathbf{A}_d x_{t} + \epsilon_t\\[1ex]
-\text{równanie structuralne: }&& \mathbf{B}\epsilon_t &= u_t\\[1ex]
-\text{structuralne szoki: }&& u_t |Y_{t-1} &\sim N_N\left(\mathbf{0}_N,\text{diag}\left(\boldsymbol\sigma_t^2\right)\right)
+\text{równanie strukturalne: }&& \mathbf{B}\epsilon_t &= u_t\\[1ex]
+\text{strukturalne szoki: }&& u_t |Y_{t-1} &\sim N_N\left(\mathbf{0}_N,\text{diag}\left(\boldsymbol\sigma_t^2\right)\right)
 \end{align}
 
 ::: {.fragment}
@@ -495,8 +477,8 @@ post |> forecast(horizon = 12) |> plot()
 
 - homoskedastyczność $\boldsymbol\sigma_{n.t}^2 = 1$
 - zmienność stochastyczna
-- stacjonarny proces Markova dla zmienności
-- nieparametryczny proces Markova dla zmienności
+- stacjonarny proces Markowa dla zmienności
+- nieparametryczny proces Markowa dla zmienności
 
 - rozkłady szoków
   - normalny
@@ -627,6 +609,42 @@ Niech $N=2$
 
 ## <span style="color: #ff68b4;">identyfikacja modeli strukturalnych</span>  {background-color="#ededed"}
 
+
+
+
+
+
+## identyfikacja modeli strukturalnych
+
+::: footer
+[bsvars.org](https://bsvars.org)
+:::
+
+### równanie strukturalne.
+
+\begin{align}
+\text{relacje strukturalne:}&&\mathbf{Q}\mathbf{B}\epsilon_t &= \mathbf{Q}u_t\\[1ex]
+\text{efekty strukturalne:}&&\epsilon_t &= \mathbf{\Theta}_0\mathbf{Q}'\mathbf{Q} u_t\\[1ex]
+\end{align}
+
+### identyfikacja co do macierzy obrotu.
+
+\begin{align}
+\mathbf\Sigma &= \mathbf{B}^{-1}\mathbf{Q}'\mathbf{Q}\mathbf{B}^{-1\prime} = \mathbf{\Theta}_0\mathbf{Q}'\mathbf{Q}\mathbf{\Theta}_0^{\prime}\\[1ex]
+\mathbf{Q}'\mathbf{Q} &= \mathbf{I}_N\\[1ex]
+\end{align}
+
++ funkcja wiarygodności nie zależy od $\mathbf{Q}$
++ identyfikacja modely zawęża typ $\mathbf{Q}$
+
+
+
+
+
+
+
+
+
 ## identyfikacja modeli strukturalnych
 
 ::: footer
@@ -646,7 +664,7 @@ Niech $N=2$
 - $\mathbf\Sigma$ ma $N(N+1)/2$ unikalnych elementów, tj. równań
 - $\mathbf{B}$ jest $N\times N$ macierzą z $N^2$ elementami do estymacji
 - niewystarczająca liczba równań do estymacji $\mathbf{B}$
-- $\mathbf{B}$ <text style="color:#ededed;">**nie jest indentyfikowalna**</text>
+- $\mathbf{B}$ <text style="color:#ff68b4;">**nie jest indentyfikowalna**</text>
 
 
 
@@ -668,9 +686,10 @@ Niech $N=2$
 
 - jedynie $N(N+1)/2$ elementów w $\mathbf{B}$ może być wyestymowanych
 - nałożenie $N(N-1)/2$ restrykcji na $\mathbf{B}$ ułatwia rozwiązanie
-- wiersze w $\mathbf{B}$ (i kolumny w $\mathbf\Theta_0$) identyfikowane co do znaku
 - zmiana znaków wierszy w $\mathbf{B}$ nie zmienia wartości $\mathbf\Sigma$ 
 - często zakładamy trójkątną macierz $\mathbf{B}$
+- wiersze w $\mathbf{B}$ (i kolumny w $\mathbf\Theta_0$) identyfikowane co do znaku
++ restrykcje zerowe zmieniają typ macierzy $\mathbf{Q}$ do diagonalnej z elementami $\pm1$
 
 
 
@@ -821,7 +840,7 @@ plot(
   bty="n", pch = 16,
   ylab = "", xlab = "x",
   axes = FALSE,
-  main = "heteroskedastyczność i rozkład leptokurtyczny"
+  main = "heteroskedastyczność lub rozkład nienormalny"
 )
 abline(a = 0, b = 1, col = "#ff68b4")
 abline(a = 0, b = -1, col = "#ff68b4")
@@ -843,31 +862,6 @@ abline(a = 0, b = -1, col = "#ff68b4")
 [bsvars.org](https://bsvars.org)
 :::
 
-### równanie strukturalne.
-
-\begin{align}
-\text{relacje strukturalne:}&&\mathbf{Q}\mathbf{B}\epsilon_t &= \mathbf{Q}u_t\\[1ex]
-\text{efekty strukturalne:}&&\epsilon_t &= \mathbf{\Theta}_0\mathbf{Q}'\mathbf{Q} u_t\\[1ex]
-\end{align}
-
-### identyfikacja co do macierzy obrotu.
-
-\begin{align}
-\mathbf\Sigma &= \mathbf{B}^{-1}\mathbf{Q}'\mathbf{Q}\mathbf{B}^{-1\prime} = \mathbf{\Theta}_0\mathbf{Q}'\mathbf{Q}\mathbf{\Theta}_0^{\prime}\\[1ex]
-\mathbf{Q}'\mathbf{Q} &= \mathbf{I}_N\\[1ex]
-\end{align}
-
-+ funkcja wiarygodności nie zależy od $\mathbf{Q}$
-+ identyfikacja modely zawęża typ $\mathbf{Q}$
-+ restrykcje zerowe zmieniają typ macierzy $\mathbf{Q}$ do diagonalnej z elementami $\pm1$
-
-
-## identyfikacja modeli strukturalnych
-
-::: footer
-[bsvars.org](https://bsvars.org)
-:::
-
 ### restrykcje znaku.
 
 \begin{align}
@@ -875,9 +869,9 @@ abline(a = 0, b = -1, col = "#ff68b4")
 \text{efekty strukturalne:}&&\epsilon_t &= \tilde{\mathbf{\Theta}}_0\tilde{u}_t\\[1ex]
 \end{align}
 
-+ restrykcje na znak elementów w $\tilde{\mathbf{B}}$ i/lub $\tilde{\mathbf{\Theta}}_0$
++ restrykcje na znak elementów w $\tilde{\mathbf{B}}=\mathbf{Q}\mathbf{B}$ i/lub $\tilde{\mathbf{\Theta}}_0=\mathbf{\Theta}_0\mathbf{Q}'$
 + zawęża zbiór identyfikowalny: model jest identyfikowalny co do macierzy obrotu $\mathbf{Q}$ koherentnej z restrykcjami
-+ estymacja ma za cel przybliżenie zbioru identyfikowalnego
++ estymacja ma za cel oszacowanie zbioru identyfikowalnego
 
 ### restrykcje znaku i zerowe.
 
@@ -932,7 +926,7 @@ abline(a = 0, b = -1, col = "#ff68b4")
 [bsvars.org](https://bsvars.org)
 :::
 
-![](bsvars.png){.absolute top=-10 right=10 width="120"}
+![](bsvars.png){.absolute top=550 right=10 width="120"}
 
 \begin{align}
 &\\
@@ -957,7 +951,7 @@ abline(a = 0, b = -1, col = "#ff68b4")
 [bsvars.org](https://bsvars.org)
 :::
 
-![](bsvars.png){.absolute top=-10 right=10 width="120"}
+![](bsvars.png){.absolute top=550 right=10 width="120"}
 
 \begin{align}
 &\\
@@ -971,7 +965,9 @@ abline(a = 0, b = -1, col = "#ff68b4")
 
 
 
-## zmienność stochastyczna: rozkłady a priori
+## zmienność stochastyczna
+
+### rozkłady brzegowe a priori.
 
 ```{r plot_cv_prior}
 #| echo: false
@@ -1046,7 +1042,7 @@ abline(h = 0, lwd = 0.5)
 [bsvars.org](https://bsvars.org)
 :::
 
-![](bsvars.png){.absolute top=-10 right=10 width="120"}
+![](bsvars.png){.absolute top=550 right=10 width="120"}
 
 \begin{align}
 &\\
@@ -1074,13 +1070,13 @@ abline(h = 0, lwd = 0.5)
 [bsvars.org](https://bsvars.org)
 :::
 
-![](bsvars.png){.absolute top=-10 right=10 width="120"}
+![](bsvars.png){.absolute top=550 right=10 width="120"}
 
 \begin{align}
 &\\
 \text{szoki strukturalne:}&&\mathbf{u}_t\mid s_t \sim N\left( \mathbf{0}_N, \text{diag}\left(\boldsymbol{\sigma}_{s_t}^2\right) \right)\\
 \text{a priori:}&& M^{-1}\left(\boldsymbol{\sigma}_{1}^2, \dots, \boldsymbol{\sigma}_{M}^2\right) \sim Dirichlet(\underline{a}\boldsymbol\imath')\\
-\text{prawdopodobieństwo:}&& Pr[s_t]=\boldsymbol\pi_0
+\text{proces Markowa:}&& Pr[s_t]=\boldsymbol\pi_0
 \end{align}
 
 - modelowanie mieszanki rozkładów normalnych
@@ -1096,7 +1092,7 @@ abline(h = 0, lwd = 0.5)
 [bsvars.org](https://bsvars.org)
 :::
 
-![](bsvars.png){.absolute top=-10 right=10 width="120"}
+![](bsvars.png){.absolute top=550 right=10 width="120"}
 
 
 \begin{align}
@@ -1111,9 +1107,6 @@ abline(h = 0, lwd = 0.5)
 
 
 
-##  {background-color="#ededed"}
-
-![](social_uwwne.png){.absolute top=10 right=10 width="1000"}
 
 
 
@@ -1128,37 +1121,23 @@ abline(h = 0, lwd = 0.5)
 
 
 
+## <span style='color: #ff68b4;'>skrypty dla analiz strukturalnych</span> {background-color="#ededed"}
 
-
-
-
-
-
-
-
-## <span style='color: #ff68b4;'>Australian Monetary Policy Analysis</span> {background-color="#ededed"}
-
-$$ $$
-
-[Download reproduction script](https://github.com/bsvars/2024-12-uek/blob/master/bsvars_oz.R)
-
-
-
-## Australian Monetary Policy Analysis
+## mały system polityki pieniężnej
 
 ::: footer 
 [bsvars.org](https://bsvars.org) 
 :::
 
-### System of four variables.
+$$ $$
 
-Based on [Turnip (2017)]( https://doi.org/10.1111/1475-4932.12345)
+Dla australijskich danych kwartalnych jak w  [Turnip (2017)]( https://doi.org/10.1111/1475-4932.12345)
 
 \begin{align}
 y_t = \begin{bmatrix} \Delta rgdp_t & \pi_t & cr_t & \Delta rtwi_t \end{bmatrix}'
 \end{align}
 
-### A lower-triangular identification pattern.
+### identyfikacja przez trójkątną macierz strukturalną.
 
 \begin{align}
 \begin{bmatrix}
@@ -1169,11 +1148,7 @@ B_{41}&B_{42}&B_{43}&B_{44}
 \end{bmatrix}
 \begin{bmatrix} \Delta rgdp_t \\ \pi_t \\ cr_t \\ \Delta rtwi_t \end{bmatrix} \end{align}
 
-- In the **extended** model, the monetary policy shock is not identified
-- Use identification via heteroskedasticity to identify it
-
-
-## Four-Variable Monetary System
+## mały system polityki pieniężnej
 
 ```{r} 
 #| label: data
@@ -1206,7 +1181,7 @@ rtwi            = 100 * na.omit(diff(log(rtwi_tmp)))
 drtwi            = xts::to.quarterly(rtwi, OHLC = FALSE)
 
 y               = na.omit(merge(drgdp, pi, cr, drtwi))
-plot(y, main = "Australian monetary system",
+plot(y, main = "mały system australijskiej polityki pieniężnej",
      legend.loc = "bottomleft", col = c("#FF00FF","#990099","#ededed","#330033"))
 ```
 
@@ -1214,17 +1189,12 @@ plot(y, main = "Australian monetary system",
 ::: footer 
 [bsvars.org](https://bsvars.org) 
 :::
-
-
-
-## Model Estimation
+## inicjalizacja i estymacja modelu
 
 ::: footer 
 [bsvars.org](https://bsvars.org) 
 :::
 
-
-### Lower-triangular model with zero prior mean for $\mathbf{A}$.
 
 ```{r}
 #| cache: true
@@ -1247,7 +1217,7 @@ spec |>
 
 
 
-## Compute impulse responses
+## oblicz impulse responses
 
 ::: footer 
 [bsvars.org](https://bsvars.org) 
@@ -1267,7 +1237,7 @@ post |>
 
 
 
-## Compute forecast error variance decompositions
+## oblicz forecast error variance decompositions
 
 ::: footer 
 [bsvars.org](https://bsvars.org) 
@@ -1289,7 +1259,7 @@ post |>
 
 
 
-## Compute structural shocks
+## oblicz szoki strukturanle
 
 ::: footer 
 [bsvars.org](https://bsvars.org) 
@@ -1305,7 +1275,7 @@ post |>
 ```
 
 
-## Compute fitted values
+## oblicz wartości dopasowane
 
 ::: footer 
 [bsvars.org](https://bsvars.org) 
@@ -1323,7 +1293,7 @@ post |>
 
 
 
-## Compute forecasts
+## oblicz prognozy
 
 ::: footer 
 [bsvars.org](https://bsvars.org) 
